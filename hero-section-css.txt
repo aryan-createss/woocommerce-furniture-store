@@ -1,0 +1,628 @@
+/* ══════════════════════════════════════════════════════
+   MM LIGHT HERO — CONTROL PANEL
+   Images + text live at Settings → Hero Light
+   (leave the "Hanging lamp" slot EMPTY — the lamp is drawn here)
+   ══════════════════════════════════════════════════════ */
+.hr{
+
+  /* ═══════════ 1. SIZE ═══════════ */
+
+  --hr-height:        92vh;      /* section height (desktop) */
+  --hr-min-h:         620px;     /* but never shorter than this */
+  --hr-pad-x:         70px;      /* left + right */
+  --hr-max-width:     1300px;    /* width limit of the content */
+  --hr-pull-top:      0px;       /* raise the section — try -60px */
+
+
+  /* ═══════════ 2. COLOURS — LIGHT ON ═══════════ */
+
+  --hr-bg-top:        #EDE4D6;   /* top of the background */
+  --hr-bg-mid:        #B08355;   /* middle — the warm glow */
+  --hr-bg-bottom:     #8E6440;   /* bottom */
+
+  --hr-ink:           #795548;   /* heading colour */
+  --hr-sub-ink:       #6B4A3A;   /* subtitle colour */
+  --hr-btn-bg:        #B8895A;   /* button background */
+  --hr-btn-ink:       #F7F0E6;   /* button text */
+  --hr-btn-hover:     #553926;
+
+  --hr-arc-color:     rgba(90,60,35,.18);   /* the decorative rings */
+  --hr-sw-ink:        #3A2417;              /* ON / OFF labels */
+  --hr-sw-track:      rgba(255,255,255,.55);
+  --hr-sw-knob:       #3E2A1C;
+
+
+  /* ═══════════ 3. COLOURS — LIGHT OFF ═══════════ */
+
+  --hr-off-top:       #1A1410;   /* top of the dark background */
+  --hr-off-mid:       #241B14;
+  --hr-off-bottom:    #12100E;
+
+  --hr-off-ink:       #E8DFD2;   /* heading when dark */
+  --hr-off-sub:       #B4A695;   /* subtitle when dark */
+  --hr-off-btn-bg:    #E8DFD2;   /* button when dark */
+  --hr-off-btn-ink:   #241B14;
+  --hr-off-arc:       rgba(255,235,200,.07);
+  --hr-off-sw-ink:    #D8CCBC;
+  --hr-off-sw-track:  rgba(255,255,255,.18);
+  --hr-off-sw-knob:   #E8DFD2;
+
+  --hr-dim:           .58;       /* how dark the photo goes — 0 = unchanged */
+  --hr-speed:         .75s;      /* how long the light takes to fade */
+
+
+  /* ═══════════ 4. THE LAMP (drawn in CSS) ═══════════ */
+
+  --hr-lamp-x:        68%;       /* ★ lamp position across the section */
+  --hr-lamp-y:        120px;     /* ★ how far down the SHADE starts */
+
+  --hr-shade-w:       150px;     /* width of the cone shade */
+  --hr-shade-h:       74px;      /* height of the cone shade */
+  --hr-shade-color:   #C9B48A;   /* shade colour (light on) */
+  --hr-shade-off:     #4A3D30;   /* shade colour (light off) */
+
+  --hr-cord-w:        2px;       /* the flex/cord */
+  --hr-cord-color:    #2E2118;
+  --hr-cord-off:      #0E0B08;
+
+  --hr-bulb-drop:     10px;      /* how far the bulb sits below the shade */
+  --hr-bulb-r:        16px;      /* bulb size */
+  --hr-bulb-color:    #FFF6DC;   /* the hot centre of the bulb */
+
+  --hr-glow-color:   rgba(255,226,183,.85);
+  --hr-glow-size:     520px;     /* how far the light spreads */
+  --hr-glow-on:       .95;       /* strength when the light is ON */
+
+
+  /* ═══════════ 5. HEADING ═══════════ */
+
+  --hr-title-size:    clamp(48px, 6.6vw, 96px);
+  --hr-title-font:    Georgia, "Times New Roman", serif;
+  --hr-title-weight:  400;
+  --hr-title-line:    .95;       /* gap between the two lines */
+  --hr-title-track:   .02em;     /* letter spacing */
+  --hr-title-gap:     26px;      /* space below the heading */
+
+  --hr-sub-size:      17px;
+  --hr-sub-line:      1.6;
+  --hr-sub-width:     440px;     /* how wide before it wraps */
+  --hr-sub-gap:       34px;      /* space below the subtitle */
+
+
+  /* ═══════════ 6. BUTTON ═══════════ */
+
+  --hr-btn-size:      18px;
+  --hr-btn-pad-y:     18px;
+  --hr-btn-pad-x:     52px;
+  --hr-btn-radius:    999px;
+  --hr-btn-weight:    500;
+
+
+  /* ═══════════ 7. PRODUCT PHOTO ═══════════ */
+
+  --hr-photo-h:       75%;       /* Increase the widht of the photo */
+  --hr-photo-top:     150px;     /* ★ keeps the photo clear of the lamp */
+  --hr-photo-x:       20%;        /* Move the photo right side  */
+  --hr-photo-y:       -50px;       /* Move the photo down */
+
+
+  /* ═══════════ 8. THE ON / OFF SWITCH ═══════════ */
+
+  --hr-sw-left:       70px;      /* distance from the left edge */
+  --hr-sw-bottom:     54px;      /* distance from the bottom */
+  --hr-sw-space:      210px;     /* ★ room reserved below the button so the
+                                    switch never sits on top of it */
+  --hr-sw-w:          58px;      /* switch width */
+  --hr-sw-h:          128px;     /* switch height */
+  --hr-sw-radius:     999px;
+  --hr-sw-pad:        6px;       /* space around the knob */
+  --hr-sw-knob-size:  46px;
+  --hr-sw-font:       13px;      /* ON / OFF label size */
+  --hr-sw-gap:        12px;      /* space between labels and the switch */
+  --hr-sw-track-bd:   rgba(60,40,25,.35);
+
+
+  /* ═══════════ 9. MOBILE (screens under 900px) ═══════════ */
+
+  --hr-m-pad-top:     10px;  /*Move the photo up & down*/
+  --hr-m-pad-bottom:  40px;
+  --hr-m-pad-x:       18px;
+
+  --hr-m-title:       clamp(34px, 12vw, 56px);
+  --hr-m-title-gap:   16px;
+  --hr-m-sub:         15px;
+  --hr-m-sub-gap:     24px;
+  --hr-m-btn:         16px;
+  --hr-m-btn-pad-y:   15px;
+  --hr-m-btn-pad-x:   40px;
+
+  --hr-m-lamp-x:      78%;       /* lamp position across, on phone */
+  --hr-m-lamp-y:      185px;     /* ★ how far down the shade starts */
+--hr-m-photo-x: 50px; /*Move the photo right & left*/	
+  --hr-m-shade-w:     96px;
+  --hr-m-shade-h:     48px;
+  --hr-m-bulb-r:      12px;
+  --hr-m-glow-size:   300px;
+
+  --hr-m-photo-h:     320px;     /* image height on phone */
+  --hr-m-photo-top:   40px;      /* ★ move the phoo up & down */
+
+  --hr-m-sw-w:        46px;
+  --hr-m-sw-h:        104px;
+  --hr-m-sw-knob:     36px;
+  --hr-m-sw-font:     11px;
+  --hr-m-sw-top:      26px;      /* space above the switch on phone */
+}
+
+
+/* ══════════════════════════════════════════════════════
+   STYLING BELOW — you normally don't need to touch this
+   ══════════════════════════════════════════════════════ */
+
+html body .hr,
+html body .hr *{ box-sizing:border-box; }
+
+html body .hr{
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:var(--hr-min-h);
+  height:var(--hr-height);
+  padding:0 var(--hr-pad-x);
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(165deg,
+    var(--hr-bg-top) 0%,
+    var(--hr-bg-mid) 55%,
+    var(--hr-bg-bottom) 100%);
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top:   var(--hr-pull-top);
+  width:auto;
+  max-width:none;
+  transition:background var(--hr-speed) ease;
+}
+
+html body .elementor-widget-shortcode:has(.hr),
+html body .elementor-widget-container:has(> .hr),
+html body .elementor-element:has(.hr),
+html body .e-con:has(.hr),
+html body .e-con-inner:has(.hr){
+  padding:0 !important;
+  margin:0 !important;
+  max-width:none !important;
+}
+
+/* the checkbox itself is never seen */
+html body .hr-toggle{
+  position:absolute;
+  opacity:0;
+  width:0;
+  height:0;
+  pointer-events:none;
+}
+
+/* ── rings + the lamp hardware live here ── */
+html body .hr-arcs{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:repeating-radial-gradient(circle at 18% 52%,
+    transparent 0 78px,
+    var(--hr-arc-color) 78px 79px);
+  transition:background var(--hr-speed) ease;
+}
+
+/* the cord */
+html body .hr-arcs::before{
+  content:"";
+  position:absolute;
+  left:var(--hr-lamp-x);
+  top:0;
+  width:var(--hr-cord-w);
+  height:var(--hr-lamp-y);
+  margin-left:calc(var(--hr-cord-w) / -2);
+  background:var(--hr-cord-color);
+  transition:background var(--hr-speed) ease;
+}
+
+/* the cone shade */
+html body .hr-arcs::after{
+  content:"";
+  position:absolute;
+  left:var(--hr-lamp-x);
+  top:var(--hr-lamp-y);
+  width:var(--hr-shade-w);
+  height:var(--hr-shade-h);
+  margin-left:calc(var(--hr-shade-w) / -2);
+  background:linear-gradient(180deg,
+    var(--hr-shade-color) 0%,
+    rgba(0,0,0,.16) 100%),
+    var(--hr-shade-color);
+  clip-path:polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  transition:background var(--hr-speed) ease;
+}
+
+/* ── the light + the bulb ── */
+html body .hr-glow{
+  position:absolute;
+  left:var(--hr-lamp-x);
+  top:calc(var(--hr-lamp-y) + var(--hr-shade-h) + var(--hr-bulb-drop));
+  z-index:2;
+  width:var(--hr-glow-size);
+  height:var(--hr-glow-size);
+  margin-left:calc(var(--hr-glow-size) / -2);
+  margin-top:calc(var(--hr-glow-size) / -2);
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,
+    var(--hr-bulb-color) 0 var(--hr-bulb-r),
+    var(--hr-glow-color) calc(var(--hr-bulb-r) + 3px) 22%,
+    rgba(255,214,130,0) 70%);
+  opacity:var(--hr-glow-on);
+  transition:opacity var(--hr-speed) ease;
+}
+
+/* ── the darkness layer ── */
+html body .hr-dark{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(165deg,
+    var(--hr-off-top) 0%,
+    var(--hr-off-mid) 55%,
+    var(--hr-off-bottom) 100%);
+  transition:opacity var(--hr-speed) ease;
+}
+
+/* ── content ── */
+html body .hr-inner{
+  position:relative;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  gap:30px;
+  width:100%;
+  max-width:var(--hr-max-width);
+  margin:0 auto;
+  padding-bottom:var(--hr-sw-space);   /* keeps the button above the switch */
+}
+
+html body .hr-left{ flex:1 1 50%; min-width:0; }
+
+html body .hr-right{
+  flex:1 1 50%;
+  min-width:0;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  align-self:stretch;
+  padding-top:var(--hr-photo-top);     /* keeps the photo clear of the lamp */
+}
+
+html body .hr-title{
+  margin:0 0 var(--hr-title-gap);
+  padding:0;
+  color:var(--hr-ink);
+  font-family:var(--hr-title-font);
+  font-size:var(--hr-title-size);
+  font-weight:var(--hr-title-weight);
+  line-height:var(--hr-title-line);
+  letter-spacing:var(--hr-title-track);
+  text-transform:uppercase;
+  transition:color var(--hr-speed) ease;
+}
+html body .hr-l1,
+html body .hr-l2{ display:block; }
+
+html body .hr-sub{
+  max-width:var(--hr-sub-width);
+  margin:0 0 var(--hr-sub-gap);
+  color:var(--hr-sub-ink);
+  font-size:var(--hr-sub-size);
+  line-height:var(--hr-sub-line);
+  transition:color var(--hr-speed) ease;
+}
+
+html body .hr-btn{
+  display:inline-block;
+  padding:var(--hr-btn-pad-y) var(--hr-btn-pad-x);
+  border-radius:var(--hr-btn-radius);
+  background:var(--hr-btn-bg);
+  color:var(--hr-btn-ink);
+  font-size:var(--hr-btn-size);
+  font-weight:var(--hr-btn-weight);
+  text-decoration:none;
+  transition:background var(--hr-speed) ease, color var(--hr-speed) ease;
+}
+html body .hr-btn:hover{ background:var(--hr-btn-hover); }
+
+/* ── product photo ── */
+html body .hr-photo{
+  display:block;
+  height:var(--hr-photo-h);
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  transform:translate(var(--hr-photo-x), var(--hr-photo-y));
+  filter:brightness(1);
+  transition:filter var(--hr-speed) ease;
+}
+
+/* the uploaded lamp image + its cord are not used — the lamp is CSS */
+html body .hr-lamp,
+html body .hr-cord{ display:none !important; }
+
+/* ── the ON / OFF switch ── */
+html body .hr-switch{
+  position:absolute;
+  left:var(--hr-sw-left);
+  bottom:var(--hr-sw-bottom);
+  z-index:6;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--hr-sw-gap);
+  cursor:pointer;
+  user-select:none;
+}
+html body .hr-sw-label{
+  color:var(--hr-sw-ink);
+  font-size:var(--hr-sw-font);
+  font-weight:600;
+  letter-spacing:.12em;
+  transition:color var(--hr-speed) ease, opacity .25s ease;
+}
+html body .hr-sw-track{
+  position:relative;
+  display:block;
+  width:var(--hr-sw-w);
+  height:var(--hr-sw-h);
+  border:1px solid var(--hr-sw-track-bd);
+  border-radius:var(--hr-sw-radius);
+  background:var(--hr-sw-track);
+  transition:background var(--hr-speed) ease, border-color var(--hr-speed) ease;
+}
+html body .hr-sw-knob{
+  position:absolute;
+  left:var(--hr-sw-pad);
+  top:var(--hr-sw-pad);
+  width:var(--hr-sw-knob-size);
+  height:var(--hr-sw-knob-size);
+  border-radius:50%;
+  background:var(--hr-sw-knob);
+  transition:transform .45s cubic-bezier(.3,.1,.2,1), background var(--hr-speed) ease;
+}
+
+html body .hr-toggle:checked ~ .hr-switch .hr-sw-off{ opacity:.45; }
+html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-on{ opacity:.45; }
+
+html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-knob{
+  transform:translateY(calc(var(--hr-sw-h) - var(--hr-sw-knob-size) - (var(--hr-sw-pad) * 2)));
+}
+
+
+/* ══════════════════════════════════════════════════════
+   LIGHT OFF — everything the switch changes
+   ══════════════════════════════════════════════════════ */
+
+html body .hr-toggle:not(:checked) ~ .hr-dark{ opacity:1; }
+html body .hr-toggle:not(:checked) ~ .hr-glow{ opacity:0; }
+
+html body .hr-toggle:not(:checked) ~ .hr-arcs{
+  background:repeating-radial-gradient(circle at 18% 52%,
+    transparent 0 78px,
+    var(--hr-off-arc) 78px 79px);
+}
+html body .hr-toggle:not(:checked) ~ .hr-arcs::before{ background:var(--hr-cord-off); }
+html body .hr-toggle:not(:checked) ~ .hr-arcs::after{
+  background:linear-gradient(180deg, var(--hr-shade-off) 0%, rgba(0,0,0,.3) 100%),
+             var(--hr-shade-off);
+}
+
+html body .hr-toggle:not(:checked) ~ .hr-inner .hr-title{ color:var(--hr-off-ink); }
+html body .hr-toggle:not(:checked) ~ .hr-inner .hr-sub{ color:var(--hr-off-sub); }
+html body .hr-toggle:not(:checked) ~ .hr-inner .hr-btn{
+  background:var(--hr-off-btn-bg);
+  color:var(--hr-off-btn-ink);
+}
+html body .hr-toggle:not(:checked) ~ .hr-inner .hr-photo{
+  filter:brightness(calc(1 - var(--hr-dim)));
+}
+
+html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-label{ color:var(--hr-off-sw-ink); }
+html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-track{
+  background:var(--hr-off-sw-track);
+  border-color:rgba(255,255,255,.22);
+}
+html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-knob{ background:var(--hr-off-sw-knob); }
+
+@media (prefers-reduced-motion:reduce){
+  html body .hr,
+  html body .hr *{ transition-duration:.01ms !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE — stacked, lamp above the photo
+   ══════════════════════════════════════════════════════ */
+@media (max-width:900px){
+
+  html body .hr{
+    display:block;
+    height:auto;
+    min-height:0;
+    padding:var(--hr-m-pad-top) var(--hr-m-pad-x) var(--hr-m-pad-bottom);
+    margin-left:0;
+    margin-right:0;
+    width:100vw;
+    max-width:100vw;
+  }
+
+  html body .hr-inner{
+    display:block;
+    max-width:100%;
+    padding-bottom:0;
+  }
+
+  html body .hr-title{
+    font-size:var(--hr-m-title);
+    margin-bottom:var(--hr-m-title-gap);
+  }
+  html body .hr-sub{
+    font-size:var(--hr-m-sub);
+    margin-bottom:var(--hr-m-sub-gap);
+    max-width:100%;
+  }
+  html body .hr-btn{
+    font-size:var(--hr-m-btn);
+    padding:var(--hr-m-btn-pad-y) var(--hr-m-btn-pad-x);
+  }
+
+  /* lamp — its own position on phone */
+  html body .hr-arcs::before{
+    left:var(--hr-m-lamp-x);
+    height:var(--hr-m-lamp-y);
+  }
+  html body .hr-arcs::after{
+    left:var(--hr-m-lamp-x);
+    top:var(--hr-m-lamp-y);
+    width:var(--hr-m-shade-w);
+    height:var(--hr-m-shade-h);
+    margin-left:calc(var(--hr-m-shade-w) / -2);
+  }
+  html body .hr-glow{
+    left:var(--hr-m-lamp-x);
+    top:calc(var(--hr-m-lamp-y) + var(--hr-m-shade-h) + var(--hr-bulb-drop));
+    width:var(--hr-m-glow-size);
+    height:var(--hr-m-glow-size);
+    margin-left:calc(var(--hr-m-glow-size) / -2);
+    margin-top:calc(var(--hr-m-glow-size) / -2);
+    background:radial-gradient(circle,
+      var(--hr-bulb-color) 0 var(--hr-m-bulb-r),
+      var(--hr-glow-color) calc(var(--hr-m-bulb-r) + 3px) 22%,
+      rgba(255,214,130,0) 70%);
+  }
+
+  html body .hr-right{
+    margin-top:0;
+    padding-top:var(--hr-m-photo-top);
+    justify-content:center;
+    align-items:flex-end;
+    min-height:0;
+  }
+  html body .hr-photo{
+    height:var(--hr-m-photo-h);
+    transform:none;
+  }
+
+  /* switch moves into the flow, under everything */
+  html body .hr-switch{
+    position:relative;
+    left:auto;
+    bottom:auto;
+    margin:var(--hr-m-sw-top) 0 0;
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:14px;
+  }
+  html body .hr-sw-track{
+    width:var(--hr-m-sw-h);        /* horizontal on phone */
+    height:var(--hr-m-sw-w);
+  }
+  html body .hr-sw-knob{
+    width:var(--hr-m-sw-knob);
+    height:var(--hr-m-sw-knob);
+  }
+  html body .hr-sw-label{ font-size:var(--hr-m-sw-font); }
+
+  html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-knob{
+    transform:translateX(calc(var(--hr-m-sw-h) - var(--hr-m-sw-knob) - (var(--hr-sw-pad) * 2)));
+  }
+}
+/* ══════════════════════════════════════════════════════
+   LAMP SHADE — solid, above the glow
+   ══════════════════════════════════════════════════════ */
+.hr{
+  --hr-shade-top:    #D8C49A;   /* lit top edge of the shade */
+  --hr-shade-base:   #A98B5E;   /* shaded lower edge */
+  --hr-shade-rim:    rgba(70,48,28,.5);   /* thin dark rim under it */
+}
+
+/* stack the lamp hardware above the light */
+html body .hr-arcs{ z-index:3; }
+html body .hr-dark{  z-index:4; }
+html body .hr-inner{ z-index:5; }
+
+html body .hr-arcs::after{
+  background:linear-gradient(180deg,
+    var(--hr-shade-top) 0%,
+    var(--hr-shade-base) 100%) !important;
+  filter:drop-shadow(0 2px 3px rgba(60,40,20,.35));
+  border-bottom:2px solid var(--hr-shade-rim);
+}
+
+/* light off — shade goes dark but stays visible */
+html body .hr-toggle:not(:checked) ~ .hr-arcs::after{
+  background:linear-gradient(180deg, #5A4A3A 0%, #3A2E24 100%) !important;
+}
+@media (max-width:900px){
+  .hr{ --hr-m-photo-x: 70px; }   /* negative = left, positive = right */
+  html body .hr-photo{
+    transform:translateX(var(--hr-m-photo-x)) !important;
+  }
+}
+@media (max-width:900px){
+  .hr{
+    --hr-m-sw-left:   35px;   /* distance from the left edge */
+    --hr-m-sw-bottom: 80px;   /* distance from the bottom */
+  }
+
+  html body .hr-switch{
+    position:absolute !important;
+    left:var(--hr-m-sw-left);
+    bottom:var(--hr-m-sw-bottom);
+    margin:0 !important;
+    flex-direction:column;
+    gap:10px;
+    z-index:6;
+  }
+
+  /* vertical track again */
+  html body .hr-sw-track{
+    width:var(--hr-m-sw-w);
+    height:var(--hr-m-sw-h);
+  }
+  html body .hr-toggle:not(:checked) ~ .hr-switch .hr-sw-knob{
+    transform:translateY(calc(var(--hr-m-sw-h) - var(--hr-m-sw-knob) - (var(--hr-sw-pad) * 2))) !important;
+  }
+}
+/* ══════════════════════════════════════════════════════
+   BACKGROUND LINES — straight instead of circular
+   ══════════════════════════════════════════════════════ */
+.hr{
+  --hr-line-angle: 115deg;   /* 90deg = vertical, 0deg = horizontal,
+                                115deg = diagonal like the reference */
+  --hr-line-gap:   78px;     /* space between the lines */
+  --hr-line-w:     2px;      /* line thickness */
+}
+
+html body .hr-arcs{
+  background:repeating-linear-gradient(
+    var(--hr-line-angle),
+    transparent 0 var(--hr-line-gap),
+    var(--hr-arc-color) var(--hr-line-gap) calc(var(--hr-line-gap) + var(--hr-line-w))
+  ) !important;
+}
+
+html body .hr-toggle:not(:checked) ~ .hr-arcs{
+  background:repeating-linear-gradient(
+    var(--hr-line-angle),
+    transparent 0 var(--hr-line-gap),
+    var(--hr-off-arc) var(--hr-line-gap) calc(var(--hr-line-gap) + var(--hr-line-w))
+  ) !important;
+}

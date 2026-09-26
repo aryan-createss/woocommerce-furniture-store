@@ -1,0 +1,216 @@
+/**
+ * MM Light Hero — shortcode: [mm_light]
+ * Content:  WP Admin → Settings → Hero Light
+ * Styling:  the "--hr-" CSS snippet
+ */
+
+function mm_hr_defaults() {
+	return array(
+		'line1'     => 'YOUR TRUE',
+		'line2'     => 'COMFORT',
+		'sub'       => 'Thoughtfully designed furniture that blends comfort, quality, and timeless style for modern living.',
+		'btn_text'  => 'Explore',
+		'btn_url'   => '',
+		'img'       => '',    // product cut-out
+		'lamp'      => '',    // hanging lamp (optional)
+		'on_label'  => 'ON',
+		'off_label' => 'OFF',
+	);
+}
+
+function mm_hr_get() {
+	$saved = get_option( 'mm_hr_opts', array() );
+	return wp_parse_args( is_array( $saved ) ? $saved : array(), mm_hr_defaults() );
+}
+
+/* ── admin menu ── */
+add_action( 'admin_menu', function () {
+	add_options_page( 'Hero Light', 'Hero Light', 'manage_options', 'mm-light', 'mm_hr_page' );
+} );
+
+add_action( 'admin_init', function () {
+	register_setting( 'mm_hr_group', 'mm_hr_opts', array( 'sanitize_callback' => 'mm_hr_sanitize' ) );
+} );
+
+function mm_hr_sanitize( $in ) {
+	return array(
+		'line1'     => sanitize_text_field( $in['line1'] ?? '' ),
+		'line2'     => sanitize_text_field( $in['line2'] ?? '' ),
+		'sub'       => sanitize_textarea_field( $in['sub'] ?? '' ),
+		'btn_text'  => sanitize_text_field( $in['btn_text'] ?? '' ),
+		'btn_url'   => esc_url_raw( $in['btn_url'] ?? '' ),
+		'img'       => esc_url_raw( $in['img'] ?? '' ),
+		'lamp'      => esc_url_raw( $in['lamp'] ?? '' ),
+		'on_label'  => sanitize_text_field( $in['on_label'] ?? '' ),
+		'off_label' => sanitize_text_field( $in['off_label'] ?? '' ),
+	);
+}
+
+add_action( 'admin_enqueue_scripts', function ( $hook ) {
+	if ( $hook === 'settings_page_mm-light' ) { wp_enqueue_media(); }
+} );
+
+function mm_hr_page() {
+	if ( ! current_user_can( 'manage_options' ) ) { return; }
+	$o = mm_hr_get();
+
+	$slots = array(
+		'img'  => 'Product photo (cut-out PNG works best)',
+		'lamp' => 'Hanging lamp (optional)',
+	);
+	?>
+	<div class="wrap">
+		<h1>Hero Light</h1>
+		<p>Add the section with: <code>[mm_light]</code></p>
+
+		<form method="post" action="options.php">
+			<?php settings_fields( 'mm_hr_group' ); ?>
+
+			<h2>Images</h2>
+			<table class="form-table" role="presentation">
+				<?php foreach ( $slots as $key => $label ) : ?>
+					<tr>
+						<th scope="row"><label><?php echo esc_html( $label ); ?></label></th>
+						<td>
+							<div style="margin-bottom:10px;">
+								<img id="mm-hr-prev-<?php echo esc_attr( $key ); ?>"
+								     src="<?php echo esc_url( $o[ $key ] ); ?>"
+								     style="max-width:220px;height:auto;border-radius:6px;background:#eee;display:<?php echo $o[ $key ] ? 'block' : 'none'; ?>;">
+							</div>
+							<input type="hidden" id="mm-hr-img-<?php echo esc_attr( $key ); ?>"
+							       name="mm_hr_opts[<?php echo esc_attr( $key ); ?>]"
+							       value="<?php echo esc_attr( $o[ $key ] ); ?>">
+							<button type="button" class="button button-primary mm-hr-upload" data-k="<?php echo esc_attr( $key ); ?>">Upload / Choose image</button>
+							<button type="button" class="button mm-hr-clear" data-k="<?php echo esc_attr( $key ); ?>">Remove</button>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+
+			<hr>
+			<h2>Text</h2>
+			<table class="form-table" role="presentation">
+				<tr>
+					<th scope="row"><label>Heading — line 1</label></th>
+					<td><input type="text" class="regular-text" name="mm_hr_opts[line1]" value="<?php echo esc_attr( $o['line1'] ); ?>"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label>Heading — line 2</label></th>
+					<td><input type="text" class="regular-text" name="mm_hr_opts[line2]" value="<?php echo esc_attr( $o['line2'] ); ?>"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label>Subtitle</label></th>
+					<td><textarea rows="3" class="large-text" name="mm_hr_opts[sub]"><?php echo esc_textarea( $o['sub'] ); ?></textarea></td>
+				</tr>
+				<tr>
+					<th scope="row"><label>Button text</label></th>
+					<td><input type="text" class="regular-text" name="mm_hr_opts[btn_text]" value="<?php echo esc_attr( $o['btn_text'] ); ?>">
+					    <p class="description">Leave empty to hide the button.</p></td>
+				</tr>
+				<tr>
+					<th scope="row"><label>Button link</label></th>
+					<td><input type="url" class="regular-text" name="mm_hr_opts[btn_url]" value="<?php echo esc_attr( $o['btn_url'] ); ?>" placeholder="https://…"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label>Switch labels</label></th>
+					<td>
+						<input type="text" style="width:90px;" name="mm_hr_opts[on_label]" value="<?php echo esc_attr( $o['on_label'] ); ?>">
+						<input type="text" style="width:90px;" name="mm_hr_opts[off_label]" value="<?php echo esc_attr( $o['off_label'] ); ?>">
+						<p class="description">On label, then off label.</p>
+					</td>
+				</tr>
+			</table>
+
+			<?php submit_button( 'Save' ); ?>
+		</form>
+	</div>
+
+	<script>
+	jQuery(function($){
+		var frames = {};
+		$('.mm-hr-upload').on('click', function(e){
+			e.preventDefault();
+			var k = $(this).data('k');
+			if (frames[k]) { frames[k].open(); return; }
+			frames[k] = wp.media({
+				title: 'Choose an image',
+				button: { text: 'Use this image' },
+				library: { type: 'image' },
+				multiple: false
+			});
+			frames[k].on('select', function(){
+				var a = frames[k].state().get('selection').first().toJSON();
+				$('#mm-hr-img-' + k).val(a.url);
+				$('#mm-hr-prev-' + k).attr('src', a.url).show();
+			});
+			frames[k].open();
+		});
+		$('.mm-hr-clear').on('click', function(e){
+			e.preventDefault();
+			var k = $(this).data('k');
+			$('#mm-hr-img-' + k).val('');
+			$('#mm-hr-prev-' + k).hide();
+		});
+	});
+	</script>
+	<?php
+}
+
+/* ── the shortcode ── */
+function mm_light_shortcode() {
+	$o   = mm_hr_get();
+	$uid = 'hrsw' . wp_rand( 1000, 9999 );
+
+	ob_start(); ?>
+	<section class="hr">
+
+		<input type="checkbox" class="hr-toggle" id="<?php echo esc_attr( $uid ); ?>" checked>
+
+		<span class="hr-arcs" aria-hidden="true"></span>
+		<span class="hr-glow" aria-hidden="true"></span>
+		<span class="hr-dark" aria-hidden="true"></span>
+
+		<div class="hr-inner">
+
+			<div class="hr-left">
+				<h1 class="hr-title">
+					<span class="hr-l1"><?php echo esc_html( $o['line1'] ); ?></span>
+					<span class="hr-l2"><?php echo esc_html( $o['line2'] ); ?></span>
+				</h1>
+
+				<?php if ( trim( $o['sub'] ) !== '' ) : ?>
+					<p class="hr-sub"><?php echo esc_html( $o['sub'] ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( trim( $o['btn_text'] ) !== '' ) : ?>
+					<a class="hr-btn" href="<?php echo esc_url( $o['btn_url'] ? $o['btn_url'] : '#' ); ?>"
+					   target="_blank" rel="noopener">
+						<?php echo esc_html( $o['btn_text'] ); ?>
+					</a>
+				<?php endif; ?>
+			</div>
+
+			<div class="hr-right">
+				<?php if ( $o['lamp'] ) : ?>
+					<span class="hr-cord" aria-hidden="true"></span>
+					<img class="hr-lamp" src="<?php echo esc_url( $o['lamp'] ); ?>" alt="" loading="eager">
+				<?php endif; ?>
+
+				<?php if ( $o['img'] ) : ?>
+					<img class="hr-photo" src="<?php echo esc_url( $o['img'] ); ?>" alt="" loading="eager">
+				<?php endif; ?>
+			</div>
+
+		</div>
+
+		<label class="hr-switch" for="<?php echo esc_attr( $uid ); ?>">
+			<span class="hr-sw-label hr-sw-on"><?php echo esc_html( $o['on_label'] ); ?></span>
+			<span class="hr-sw-track"><span class="hr-sw-knob"></span></span>
+			<span class="hr-sw-label hr-sw-off"><?php echo esc_html( $o['off_label'] ); ?></span>
+		</label>
+
+	</section>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'mm_light', 'mm_light_shortcode' );

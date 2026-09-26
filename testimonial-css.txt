@@ -1,0 +1,583 @@
+/* ══════════════════════════════════════════════════════
+   MM TESTIMONIALS — LOOK & FEEL
+   All WORDING, PHOTOS and RATINGS live at
+   WP Admin → Settings → Testimonials.
+   ══════════════════════════════════════════════════════ */
+.ts{
+
+  /* ═══════════ 1. BACKGROUND + SPACING ═══════════ */
+
+  --ts-bg-dark:        #8B6F5A;   /* bottom of the section (deep brown) */
+  --ts-bg-light:       #F3EBDD;   /* top of the section (light cream) */
+  --ts-glow-size:      70%;       /* how far the light part spreads down */
+
+  --ts-pad-top:        64px;      /* space ABOVE the section (desktop) */
+  --ts-pad-bottom:     100px;     /* space BELOW the section (desktop) */
+  --ts-pad-x:          20px;      /* space on left + right (desktop) */
+  --ts-max-width:      1180px;    /* width limit — how wide the 4 cards sit */
+
+  --ts-pull-top:       -350px;     /* closes the gap above the section (desktop) */
+  --ts-pull-bottom:    0px;
+
+
+  /* ═══════════ 2. SMALL LABEL ON TOP ═══════════ */
+
+  --ts-eyebrow-color:    #8A6E52;
+  --ts-eyebrow-size:     11px;
+  --ts-eyebrow-weight:   700;
+  --ts-eyebrow-spacing:  2.5px;
+  --ts-eyebrow-gap:      14px;
+
+
+  /* ═══════════ 3. MAIN HEADING ═══════════ */
+
+  --ts-title-color:    #795548;   /* brown */
+  --ts-title-size:     42px;
+  --ts-title-weight:   400;
+  --ts-title-line:     1.15;
+  --ts-title-gap:      60px;      /* space between heading and the cards —
+                                     raise this if a flipped card reaches the heading */
+
+
+  /* ═══════════ 4. CARD SIZE + SHAPE (desktop) ═══════════ */
+
+  --ts-card-h:         370px;     /* card height — normal */
+  --ts-card-h-open:    300px;     /* card height — WHEN FLIPPED (grows upward) */
+  --ts-open-speed:     .45s;      /* how fast it grows */
+  --ts-card-radius:    20px;      /* corner roundness */
+  --ts-card-gap:       30px;      /* space between the cards */
+
+
+  /* ═══════════ 5. PHOTO SIDE (front) ═══════════ */
+
+  --ts-img-fit:        contain;       /* contain = whole photo fits, cover = fills + crops */
+  --ts-img-pos:        center center;
+  --ts-img-bg:         #EFE5D5;       /* behind the photo */
+  --ts-img-dim:        0;             /* darkening — 0 = none, 1 = black */
+  --ts-hint-color:     #FFFFFF;
+  --ts-hint-size:      11px;
+  --ts-hint-bg:        rgba(90,66,48,.72);
+
+
+  /* ═══════════ 6. REVIEW SIDE — LAYOUT ═══════════ */
+
+  --ts-panel-pad:      22px;      /* padding inside the glass panel */
+  --ts-person-h:       62px;      /* height of the name block BELOW the panel */
+  --ts-person-gap:     12px;      /* space between panel and the name block */
+  --ts-quote-align:    left;      /* review text — left or center */
+
+
+  /* ═══════════ 7. THE SILVER FROSTED GLASS ═══════════ */
+
+  --ts-glass-blur:      30px;                      /* how frosted it looks */
+  --ts-glass-sat:       75%;                       /* under 100% drains colour → silver */
+  --ts-glass-bright:    112%;                      /* lifts it brighter */
+
+  --ts-silver-top:      rgba(250,251,253,0.40);    /* cool white at the top */
+  --ts-silver-bottom:   rgba(206,212,220,0.26);    /* cool grey at the bottom */
+
+  --ts-grain:           0.055;                     /* glass grain — 0 turns it off */
+
+  --ts-glass-edge:      rgba(255,255,255,0.85);    /* bright top-left edge */
+  --ts-glass-edge-soft: rgba(255,255,255,0.30);    /* dimmer bottom-right edge */
+  --ts-glass-inner:     rgba(255,255,255,0.18);    /* inner glow */
+  --ts-glass-edge-w:    1.5px;                     /* edge thickness */
+  --ts-glass-depth:     0 22px 46px rgba(50,35,22,0.28);
+  --ts-glass-sheen:     0.30;                      /* light sweep — 0 turns it off */
+
+
+  /* ═══════════ 8. REVIEW TEXT ═══════════ */
+
+  --ts-star-color:     #E3B341;   /* star colour (gold) */
+  --ts-star-size:      15px;
+  --ts-star-gap:       2px;
+  --ts-rate-color:     #795548;   /* the "4.9" number */
+  --ts-rate-size:      14px;
+  --ts-rate-weight:    700;
+
+  --ts-quote-color:    #4A3527;   /* review text colour */
+  --ts-quote-size:     15px;
+  --ts-quote-line:     1.55;
+
+  --ts-avatar-size:    38px;      /* round photo in the name block */
+  --ts-avatar-bg:      #E2D6C2;
+  --ts-name-color:     #2E241A;   /* customer name (sits on the brown background) */
+  --ts-name-size:      14px;
+  --ts-name-weight:    700;
+  --ts-role-color:     #6B5B4B;   /* "Verified buyer" */
+  --ts-role-size:      12px;
+
+
+  /* ═══════════ 9. FLIP ANIMATION ═══════════ */
+
+  --ts-flip-speed:     .6s;
+  --ts-flip-depth:     1400px;    /* lower = more dramatic flip */
+  --ts-hover-lift:     -6px;
+
+
+  /* ═══════════ 10. MOBILE (screens under 900px) ═══════════ */
+
+  --ts-m-pad-top:      44px;
+  --ts-m-pad-bottom:   56px;
+  --ts-m-pull-top:     -380px;                      /* closes the gap above on phone */
+
+  --ts-m-eyebrow:      10px;
+  --ts-m-title:        clamp(22px, 6.5vw, 32px);   /* change the 6.5vw to scale */
+  --ts-m-title-gap:    40px;                       /* raise if a flipped card reaches the heading */
+
+  --ts-m-card-w:       76%;                        /* card width in the slider */
+  --ts-m-card-max:     310px;
+  --ts-m-card-h:       340px;                      /* card height — normal */
+  --ts-m-card-h-open:  440px;                      /* card height — WHEN FLIPPED */
+  --ts-m-card-gap:     16px;
+  --ts-m-edge:         14px;
+  --ts-m-card-radius:  18px;
+  --ts-m-flip-depth:   1000px;
+
+  --ts-m-panel-pad:    18px;
+  --ts-m-person-h:     56px;
+  --ts-m-quote:        14px;
+  --ts-m-star:         14px;
+  --ts-m-rate:         13px;
+  --ts-m-avatar:       34px;
+  --ts-m-name:         13px;
+  --ts-m-role:         11px;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   STYLING BELOW — you normally don't need to touch this
+   ══════════════════════════════════════════════════════ */
+
+html body .ts{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  padding:var(--ts-pad-top) var(--ts-pad-x) var(--ts-pad-bottom);
+  background:
+    radial-gradient(120% var(--ts-glow-size) at 50% 0%,
+      var(--ts-bg-light) 0%, var(--ts-bg-dark) 100%),
+    var(--ts-bg-dark);
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top:    var(--ts-pull-top);
+  margin-bottom: var(--ts-pull-bottom);
+  width:auto;
+  max-width:none;
+}
+
+html body .elementor-widget-shortcode:has(.ts),
+html body .elementor-widget-container:has(> .ts),
+html body .elementor-element:has(> .elementor-widget-container > .ts),
+html body .e-con:has(.ts),
+html body .e-con-inner:has(.ts){
+  padding:0 !important;
+  margin:0 !important;
+  max-width:none !important;
+}
+
+/* arrows + dots switched off */
+html body .ts-nav,
+html body .ts-swipe{ display:none !important; }
+
+html body .ts-viewport{ overflow:visible; width:100%; }
+
+html body .ts-head{ text-align:center; max-width:var(--ts-max-width); margin:0 auto; }
+
+html body .ts-eyebrow{
+  margin:0 0 var(--ts-eyebrow-gap);
+  padding:0;
+  color:var(--ts-eyebrow-color);
+  font-size:var(--ts-eyebrow-size);
+  font-weight:var(--ts-eyebrow-weight);
+  letter-spacing:var(--ts-eyebrow-spacing);
+  text-transform:uppercase;
+}
+
+html body .ts-title{
+  margin:0 0 var(--ts-title-gap);
+  padding:0;
+  color:var(--ts-title-color);
+  font-size:var(--ts-title-size);
+  font-weight:var(--ts-title-weight);
+  line-height:var(--ts-title-line);
+}
+html body .ts-title span{ display:block; }
+
+/* ── desktop: 4 cards in one row ── */
+html body .ts-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  align-items:start;
+  gap:var(--ts-card-gap);
+  max-width:var(--ts-max-width);
+  margin:0 auto;
+  transform:none !important;      /* ignores the leftover script in the PHP */
+}
+
+/* the card keeps a FIXED height, so the row never shifts */
+html body .ts-card{
+  position:relative;
+  width:100%;
+  height:var(--ts-card-h);
+  perspective:var(--ts-flip-depth);
+}
+
+html body .ts-toggle{
+  position:absolute;
+  opacity:0;
+  width:0; height:0;
+  pointer-events:none;
+}
+
+/* anchored to the BOTTOM — so growing taller means growing UPWARD */
+html body .ts-flip{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:var(--ts-card-h);
+  cursor:pointer;
+  margin:0;
+  border-radius:var(--ts-card-radius);
+  transition:height var(--ts-open-speed) cubic-bezier(.3,.1,.2,1);
+}
+
+/* THE FLIPPED CARD GROWS UPWARD */
+html body .ts-toggle:checked + .ts-flip{
+  height:var(--ts-card-h-open);
+  z-index:5;
+}
+
+html body .ts-inner{
+  position:relative;
+  display:block;
+  width:100%; height:100%;
+  transform-style:preserve-3d;
+  transition:transform var(--ts-flip-speed) cubic-bezier(.4,.15,.2,1);
+}
+
+html body .ts-toggle:checked + .ts-flip .ts-inner{ transform:rotateY(180deg); }
+
+html body .ts-toggle:focus-visible + .ts-flip .ts-inner{
+  outline:2px solid var(--ts-star-color);
+  outline-offset:4px;
+  border-radius:var(--ts-card-radius);
+}
+
+html body .ts-front,
+html body .ts-back{
+  position:absolute;
+  inset:0;
+  display:flex;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transition:opacity 0s linear calc(var(--ts-flip-speed) / 2);
+}
+
+/* ── front: the photo ── */
+html body .ts-front{
+  align-items:flex-end;
+  justify-content:center;
+  border-radius:var(--ts-card-radius);
+  overflow:hidden;
+  clip-path:inset(0 round var(--ts-card-radius));
+  transform:rotateY(0deg) translateZ(1px);
+  background-image:var(--img);
+  background-size:var(--ts-img-fit);
+  background-position:var(--ts-img-pos);
+  background-repeat:no-repeat;
+  background-color:var(--ts-img-bg);
+  opacity:1;
+}
+html body .ts-front::after{
+  content:"";
+  position:absolute; inset:0;
+  background:#000;
+  opacity:var(--ts-img-dim);
+  pointer-events:none;
+}
+html body .ts-hint{
+  position:relative;
+  z-index:1;
+  margin-bottom:14px;
+  padding:6px 13px;
+  border-radius:999px;
+  background:var(--ts-hint-bg);
+  color:var(--ts-hint-color);
+  font-size:var(--ts-hint-size);
+  letter-spacing:.4px;
+  white-space:nowrap;
+}
+
+/* ── back: glass panel on top, name block below it ── */
+html body .ts-back{
+  transform:rotateY(180deg) translateZ(1px);
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:0;
+  background:transparent !important;
+  border:0 !important;
+  opacity:0;
+}
+html body .ts-toggle:checked + .ts-flip .ts-back{  opacity:1; }
+html body .ts-toggle:checked + .ts-flip .ts-front{ opacity:0; }
+
+/* the frosted glass panel — stops short of the name block */
+html body .ts-back::before{
+  content:"";
+  position:absolute;
+  inset:0 0 calc(var(--ts-person-h) + var(--ts-person-gap)) 0;
+  border-radius:var(--ts-card-radius);
+  z-index:0;
+  pointer-events:none;
+  -webkit-backdrop-filter:blur(var(--ts-glass-blur))
+                          saturate(var(--ts-glass-sat))
+                          brightness(var(--ts-glass-bright));
+  backdrop-filter:blur(var(--ts-glass-blur))
+                  saturate(var(--ts-glass-sat))
+                  brightness(var(--ts-glass-bright));
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,calc(0.95 * var(--ts-glass-sheen))) 0%,
+      rgba(255,255,255,calc(0.30 * var(--ts-glass-sheen))) 26%,
+      rgba(255,255,255,0) 52%),
+    linear-gradient(160deg,
+      var(--ts-silver-top) 0%,
+      var(--ts-silver-bottom) 100%);
+  box-shadow:
+    inset  var(--ts-glass-edge-w)  var(--ts-glass-edge-w) 0 var(--ts-glass-edge),
+    inset calc(var(--ts-glass-edge-w) * -1) calc(var(--ts-glass-edge-w) * -1) 0 var(--ts-glass-edge-soft),
+    inset 0 0 40px var(--ts-glass-inner),
+    var(--ts-glass-depth);
+}
+
+/* fine grain across the glass */
+html body .ts-back::after{
+  content:"";
+  position:absolute;
+  inset:0 0 calc(var(--ts-person-h) + var(--ts-person-gap)) 0;
+  border-radius:var(--ts-card-radius);
+  z-index:1;
+  pointer-events:none;
+  opacity:var(--ts-grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html body .ts-back > *{ position:relative; z-index:3; }
+
+/* stars row — inside the panel */
+html body .ts-top{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+  padding:var(--ts-panel-pad) var(--ts-panel-pad) 0;
+}
+html body .ts-stars{
+  color:var(--ts-star-color);
+  font-size:var(--ts-star-size);
+  letter-spacing:var(--ts-star-gap);
+  line-height:1;
+  white-space:nowrap;
+}
+html body .ts-rate{
+  color:var(--ts-rate-color);
+  font-size:var(--ts-rate-size);
+  font-weight:var(--ts-rate-weight);
+  line-height:1;
+}
+
+/* the quote — vertically centred in the panel */
+html body .ts-quote{
+  display:flex;
+  align-items:center;
+  flex:1 1 auto;
+  min-height:0;
+  padding:0 var(--ts-panel-pad);
+  margin-bottom:calc(var(--ts-person-h) + var(--ts-person-gap));
+  color:var(--ts-quote-color);
+  font-size:var(--ts-quote-size);
+  line-height:var(--ts-quote-line);
+  text-align:var(--ts-quote-align);
+  overflow:hidden;
+}
+
+/* the name block — sits BELOW the glass panel */
+html body .ts-person{
+  position:absolute !important;
+  left:2px;
+  right:2px;
+  bottom:0;
+  height:var(--ts-person-h);
+  display:flex;
+  align-items:center;
+  gap:11px;
+  z-index:3;
+}
+html body .ts-avatar{
+  flex:0 0 auto;
+  width:var(--ts-avatar-size);
+  height:var(--ts-avatar-size);
+  border-radius:50%;
+  background-image:var(--img);
+  background-size:cover;
+  background-position:center;
+  background-color:var(--ts-avatar-bg);
+}
+html body .ts-who{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+html body .ts-name{
+  color:var(--ts-name-color);
+  font-size:var(--ts-name-size);
+  font-weight:var(--ts-name-weight);
+  line-height:1.2;
+}
+html body .ts-role{
+  color:var(--ts-role-color);
+  font-size:var(--ts-role-size);
+  line-height:1.2;
+}
+
+/* hover lift (only while the card is unflipped) */
+html body .ts-card:hover .ts-toggle:not(:checked) + .ts-flip .ts-inner{
+  transform:translateY(var(--ts-hover-lift));
+}
+
+@media (prefers-reduced-motion:reduce){
+  html body .ts-inner,
+  html body .ts-flip{ transition-duration:.01ms; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE — swipeable slider, flip ON
+   ══════════════════════════════════════════════════════ */
+@media (max-width:900px){
+
+  html body .ts{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    margin-top:var(--ts-m-pull-top) !important;
+    padding:var(--ts-m-pad-top) 0 var(--ts-m-pad-bottom) !important;
+    box-sizing:border-box;
+  }
+
+  html body .ts-viewport{ overflow:visible !important; }
+
+  html body .ts-head{ padding:0 16px; }
+  html body .ts-eyebrow{ font-size:var(--ts-m-eyebrow); }
+  html body .ts-title{
+    font-size:var(--ts-m-title);
+    margin-bottom:var(--ts-m-title-gap);
+  }
+
+  /* the slider — native swipe, smooth */
+  html body .ts-row{
+    display:flex !important;
+    grid-template-columns:none !important;
+    flex-wrap:nowrap !important;
+    align-items:flex-start;
+    gap:var(--ts-m-card-gap);
+    width:100%;
+    max-width:100%;
+    margin:0;
+    overflow-x:auto;
+    overflow-y:visible;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    padding:6px var(--ts-m-edge);
+    box-sizing:border-box;
+    scrollbar-width:none;
+    transform:none !important;
+    transition:none !important;
+  }
+  html body .ts-row::-webkit-scrollbar{ display:none; }
+
+  html body .ts-card{
+    flex:0 0 auto;
+    width:min(var(--ts-m-card-w), var(--ts-m-card-max));
+    height:var(--ts-m-card-h);
+    scroll-snap-align:center;
+    perspective:var(--ts-m-flip-depth);
+  }
+
+  /* grows upward on phone too */
+  html body .ts-flip{ height:var(--ts-m-card-h); }
+  html body .ts-toggle:checked + .ts-flip{ height:var(--ts-m-card-h-open); }
+
+  html body .ts-front,
+  html body .ts-back{ border-radius:var(--ts-m-card-radius); }
+  html body .ts-front{
+    clip-path:inset(0 round var(--ts-m-card-radius));
+    transform:rotateY(0deg) translateZ(1px);
+    will-change:transform;
+  }
+  html body .ts-back{ transform:rotateY(180deg) translateZ(1px); }
+
+  html body .ts-back::before,
+  html body .ts-back::after{
+    inset:0 0 calc(var(--ts-m-person-h) + var(--ts-person-gap)) 0;
+    border-radius:var(--ts-m-card-radius);
+  }
+
+  /* the blur only runs while the review side is showing —
+     keeps the flip back to the photo smooth */
+  html body .ts-back::before{
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+  html body .ts-toggle:checked + .ts-flip .ts-back::before{
+    -webkit-backdrop-filter:blur(var(--ts-glass-blur))
+                            saturate(var(--ts-glass-sat))
+                            brightness(var(--ts-glass-bright));
+    backdrop-filter:blur(var(--ts-glass-blur))
+                    saturate(var(--ts-glass-sat))
+                    brightness(var(--ts-glass-bright));
+  }
+
+  /* hold the photo decoded even while it's turned away */
+  html body .ts-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:2px; height:2px;
+    opacity:0.01;
+    background-image:var(--img);
+    background-size:cover;
+    pointer-events:none;
+    z-index:-1;
+  }
+  html body .ts-inner{ will-change:transform; }
+
+  html body .ts-top{ padding:var(--ts-m-panel-pad) var(--ts-m-panel-pad) 0; }
+
+  /* review text — vertically centred on phone as well */
+  html body .ts-quote{
+    display:flex;
+    align-items:center;
+    flex:1 1 auto;
+    min-height:0;
+    padding:0 var(--ts-m-panel-pad);
+    margin-bottom:calc(var(--ts-m-person-h) + var(--ts-person-gap));
+    font-size:var(--ts-m-quote);
+    text-align:var(--ts-quote-align);
+  }
+
+  html body .ts-person{ height:var(--ts-m-person-h); }
+  html body .ts-stars{ font-size:var(--ts-m-star); }
+  html body .ts-rate{ font-size:var(--ts-m-rate); }
+  html body .ts-avatar{ width:var(--ts-m-avatar); height:var(--ts-m-avatar); }
+  html body .ts-name{ font-size:var(--ts-m-name); }
+  html body .ts-role{ font-size:var(--ts-m-role); }
+
+  html body .ts-card:hover .ts-toggle:not(:checked) + .ts-flip .ts-inner{
+    transform:none;
+  }
+}

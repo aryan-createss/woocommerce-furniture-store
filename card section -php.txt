@@ -1,0 +1,35 @@
+/**
+ * MM Stats Section — shortcode: [mm_stats]
+ * All TEXT and all STYLING live in the "--st-" CSS snippet.
+ * Use [mm_stats cards="4"] to change how many cards show (1–6).
+ */
+function mm_stats_shortcode( $atts ) {
+	$a = shortcode_atts( array(
+		'cards' => 4,   // how many cards to output
+	), $atts, 'mm_stats' );
+
+	$count = max( 1, min( 6, (int) $a['cards'] ) );
+
+	ob_start(); ?>
+	<section class="st">
+		<div class="st-head">
+			<p class="st-eyebrow"></p>
+			<h2 class="st-title">
+				<span class="st-line1"></span>
+				<span class="st-line2"></span>
+			</h2>
+		</div>
+
+		<div class="st-row">
+			<?php for ( $i = 1; $i <= $count; $i++ ) : ?>
+				<div class="st-card st-c<?php echo (int) $i; ?>">
+					<span class="st-big"></span>
+					<span class="st-small"></span>
+				</div>
+			<?php endfor; ?>
+		</div>
+	</section>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'mm_stats', 'mm_stats_shortcode' );
